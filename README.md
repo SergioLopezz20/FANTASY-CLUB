@@ -39,3 +39,11 @@ The application consists of several pages that can be navigated using the bottom
 - Settings
 
 Each page provides different functionalities and information related to the fantasy league.
+
+## Creating or Joining a League
+
+To create or join a league, follow these steps:
+
+1. Go to the League page.
+2. To create a league, click on the "Create League" button and follow the instructions.
+3. To join a league, click on the "Join League" button and enter the URL invitation provided by the league creator.
