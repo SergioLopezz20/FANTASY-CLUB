@@ -3,20 +3,40 @@ import React, { useState } from 'react';
 function League() {
   const [leagueName, setLeagueName] = useState('');
   const [joinURL, setJoinURL] = useState('');
+  const [leagues, setLeagues] = useState([]);
+  const [user, setUser] = useState({ id: 1, name: 'User 1', balance: 1000, players: [] });
 
   const handleCreateLeague = () => {
-    // Logic to create a league and generate a join URL
-    const generatedURL = 'http://example.com/join/league123';
+    const generatedURL = `http://example.com/join/${leagueName}`;
     setJoinURL(generatedURL);
+    setLeagues([...leagues, { name: leagueName, url: generatedURL, players: [] }]);
     alert(`League created! Share this URL to invite others: ${generatedURL}`);
   };
 
   const handleJoinLeague = () => {
-    // Logic to join a league using the provided URL
     if (joinURL) {
-      alert(`Joined league using URL: ${joinURL}`);
+      const league = leagues.find((league) => league.url === joinURL);
+      if (league) {
+        league.players.push(user);
+        setLeagues([...leagues]);
+        alert(`Joined league using URL: ${joinURL}`);
+      } else {
+        alert('Invalid URL.');
+      }
     } else {
       alert('Please enter a valid URL.');
+    }
+  };
+
+  const handleLeaveLeague = (leagueName) => {
+    const league = leagues.find((league) => league.name === leagueName);
+    if (league) {
+      league.players = league.players.filter((player) => player.id !== user.id);
+      setLeagues([...leagues]);
+      setUser({ ...user, balance: 1000, players: [] });
+      alert(`Left league: ${leagueName}`);
+    } else {
+      alert('League not found.');
     }
   };
 
@@ -43,6 +63,16 @@ function League() {
           onChange={(e) => setJoinURL(e.target.value)}
         />
         <button onClick={handleJoinLeague}>Join League</button>
+      </div>
+      <div>
+        <h2>Leave a League</h2>
+        <input
+          type="text"
+          placeholder="Enter league name to leave"
+          value={leagueName}
+          onChange={(e) => setLeagueName(e.target.value)}
+        />
+        <button onClick={() => handleLeaveLeague(leagueName)}>Leave League</button>
       </div>
     </div>
   );
