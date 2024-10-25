@@ -20,6 +20,15 @@ function BottomNavBar() {
         <li>
           <Link to="/settings">Settings</Link>
         </li>
+        <li>
+          <Link to="/classification">Classification</Link>
+        </li>
+        <li>
+          <Link to="/squad">Squad</Link>
+        </li>
+        <li>
+          <Link to="/market">Market</Link>
+        </li>
       </ul>
     </nav>
   );
