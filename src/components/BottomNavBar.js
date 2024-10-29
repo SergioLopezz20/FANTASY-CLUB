@@ -29,6 +29,9 @@ function BottomNavBar() {
         <li>
           <Link to="/market">Market</Link>
         </li>
+        <li>
+          <Link to="/register">Register</Link>
+        </li>
       </ul>
     </nav>
   );
